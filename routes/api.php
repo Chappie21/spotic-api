@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\entities\ArtistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // auth routes
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'store']);
+
+// Artist routes
+Route::apiResource('/artist', ArtistController::class);
