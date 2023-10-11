@@ -25,5 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'store']);
 
-// Artist routes
-Route::apiResource('/artist', ArtistController::class);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Artist routes
+    Route::apiResource('/artist', ArtistController::class);
+});

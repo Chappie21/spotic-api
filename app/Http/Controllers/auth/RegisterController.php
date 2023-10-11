@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -28,11 +29,9 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
-            auth()->attempt($request->only('email', 'password'));
-
             return response()->json([
                 'message' => 'Register successful'
-            ], 201);
+            ], Response::HTTP_CREATED);
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'Validation failed',
