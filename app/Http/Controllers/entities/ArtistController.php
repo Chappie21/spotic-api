@@ -5,7 +5,9 @@ namespace App\Http\Controllers\entities;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\resources\artists\ArtistCollection;
 use App\Models\Artist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -57,7 +59,7 @@ class ArtistController extends Controller
                 'country' => $request->country,
                 'image' => $request->image ? $request->image : '',
             ]);
-    
+
             $artist->created_by = Auth::id();
             $artist->updated_by = Auth::id();
             $artist->save();
@@ -74,4 +76,45 @@ class ArtistController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        try {
+            $artist = Artist::find($id);
+
+            if (!$artist) {
+                return response()->json([
+                    'message' => 'Artist not found'
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            // validate request
+            $this->validate($request, [
+                'first_name' => 'required|min:3|max:100',
+                'last_name' => 'required|min:3|max:100',
+                'artist_name' => 'required|min:3|max:100|unique:artists,artist_name,' . $id . ',id',
+                'age' => 'integer|min:3',
+                'country' => 'min:3|max:100'
+            ]);
+
+            // Update artist
+            $artist->first_name = $request->first_name;
+            $artist->last_name = $request->last_name;
+            $artist->artist_name = $request->artist_name;
+            $artist->age = $request->age;
+            $artist->country = $request->country;
+            $artist->image = $request->image ? $request->image : '';
+            $artist->updated_by = Auth::id();
+            $artist->updated_at = Carbon::now();
+            $artist->save();
+
+            return response()->json([
+                'message' => 'Artist updated successfully'
+            ], Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $e->errors()
+            ], 422);
+        }
+    }
 }
