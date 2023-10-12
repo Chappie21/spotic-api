@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(ArtistSeeder::class);
-
+        $this->call(AlbumsSeeder::class);
     }
 }
