@@ -347,7 +347,7 @@ class AlbumsSeeder extends Seeder
                 ],
         ];
 
-        // insert data in artists table 
+        // insert data in albums table 
         DB::table('albums')->insert($data);
     }
 }
