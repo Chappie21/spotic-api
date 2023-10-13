@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\entities;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AlbumCollection;
-use App\Http\Resources\AlbumResource;
+use App\Http\Resources\Albums\AlbumCollection;
+use App\Http\Resources\Albums\AlbumResource;
 use App\Models\Album;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

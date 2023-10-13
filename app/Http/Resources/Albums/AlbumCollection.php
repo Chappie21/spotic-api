@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Albums;
 
+use App\Http\Resources\Albums\AlbumResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AlbumCollection extends ResourceCollection
