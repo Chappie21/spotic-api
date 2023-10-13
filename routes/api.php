@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\entities\ArtistController;
+use App\Http\Controllers\entities\GenresController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'store']);
 
+// required auth routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // Artist routes
     Route::apiResource('/artist', ArtistController::class);
+
+    // Genres routes
+    Route::apiResource('/genre', GenresController::class);
 });
