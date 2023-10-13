@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\entities;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\resources\Songs\SongCollection;
-use App\Http\Resources\resources\songs\SongResource;
+use App\Http\Resources\Songs\SongCollection;
+use App\Http\Resources\Songs\SongResource;
 use App\Models\Song;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Resources\resources\songs;
+namespace App\Http\Resources\Songs;
 
-use App\Http\Resources\AlbumResource;
-use App\Http\Resources\resources\Genres\GenreResource;
+use App\Http\Resources\Albums\AlbumResource;
+use App\Http\Resources\Genres\GenreResource;
+use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SongResource extends JsonResource
