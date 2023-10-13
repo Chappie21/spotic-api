@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\entities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\resources\Albums\AlbumCollection;
 use App\Http\Resources\resources\artists\ArtistCollection;
+use App\Models\Album;
 use App\Models\Artist;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,6 +40,26 @@ class ArtistController extends Controller
         return new ArtistCollection($artists);
     }
 
+    public function show(Request $request, $id)
+    {   
+        // get artists data
+        $artist = Artist::find($id);
+
+        // if artists not exists, return error
+        if (!$artist) {
+            return response()->json([
+                'message' => 'Artist not found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $albums = Album::where('artists_id', $id)->get();
+
+        // return artists data and albums
+        return response()->json([
+            'artist' => (new ArtistCollection([$artist]))[0],
+            'albums' => new AlbumCollection($albums)
+        ], Response::HTTP_OK);
+    }
     public function store(Request $request)
     {
         try {
