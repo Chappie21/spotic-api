@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\resources\Albums;
+namespace App\Http\Resources\Songs;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class AlbumCollection extends ResourceCollection
+class SongCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
