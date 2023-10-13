@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\resources\artists;
+namespace App\Http\Resources\Artists;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;

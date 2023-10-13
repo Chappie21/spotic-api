@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\entities;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\resources\Genres\GenreCollection;
+use App\Http\Resources\Genres\GenreCollection;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
