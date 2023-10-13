@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources\Songs;
+namespace App\Http\Resources\resources\songs;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SongCollection extends ResourceCollection
@@ -10,10 +9,13 @@ class SongCollection extends ResourceCollection
     /**
      * Transform the resource collection into an array.
      *
-     * @return array<int|string, mixed>
+     * @param \Illuminate\Http\Request $request
+     * @return array
      */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => SongResource::collection($this->collection),
+        ];
     }
 }
