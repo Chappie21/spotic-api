@@ -91,7 +91,7 @@ class SongController extends Controller
                 'lyrics' => $request->lyrics,
                 'duration' => $request->duration,
                 'image' => $request->image ? $request->image : '',
-                'release' => $request->release ? $request->release : null,
+                'release' => $request->release ? Carbon::parse($request->release) : null,
                 'albums_id' => $request->albums_id,
                 'genres_id' => $request->genres_id,
             ]);
@@ -137,7 +137,7 @@ class SongController extends Controller
             $song->lyrics = $request->lyrics;
             $song->duration = $request->duration;
             $song->image = $request->image ? $request->image : '';
-            $song->release = $request->release ? $request->release : null;
+            $song->release = $request->release ? Carbon::parse($request->release) : null;
             $song->albums_id = $request->albums_id;
             $song->genres_id = $request->genres_id;
             $song->updated_by = Auth::id();

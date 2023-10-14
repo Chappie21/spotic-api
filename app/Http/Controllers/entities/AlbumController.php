@@ -62,7 +62,7 @@ class AlbumController extends Controller
             $album = new Album([
                 'name' => $request->name,
                 'image' => $request->image ? $request->image : '',
-                'release' => $request->release,
+                'release' => Carbon::parse($request->release),
                 'artists_id' => $request->artists_id,
             ]);
 
@@ -102,7 +102,7 @@ class AlbumController extends Controller
 
             $album->name = $request->name;
             $album->image = $request->image ? $request->image : '';
-            $album->release = $request->release;
+            $album->release = Carbon::parse($request->release);
             $album->artists_id = $request->artists_id;
             $album->updated_by = Auth::id();
             $album->updated_at = Carbon::now();
