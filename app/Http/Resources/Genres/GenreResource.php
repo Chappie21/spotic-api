@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\resources\artists;
+namespace App\Http\Resources\Genres;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ArtistResource extends JsonResource
+class GenreResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,7 @@ class ArtistResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->first_name . ' ' . $this->last_name,
-            'artist_name' => $this->artist_name,
-            'age' => $this->age,
-            'country' => $this->country,
-            'image' => $this->image
+            'name' => $this->name
         ];
     }
 }

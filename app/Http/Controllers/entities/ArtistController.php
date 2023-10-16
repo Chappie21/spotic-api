@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\entities;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\resources\Albums\AlbumCollection;
-use App\Http\Resources\resources\artists\ArtistCollection;
+use App\Http\Resources\Albums\AlbumCollection;
+use App\Http\Resources\Artists\ArtistCollection;
+use App\Http\Resources\Artists\ArtistResource;
 use App\Models\Album;
 use App\Models\Artist;
 use Carbon\Carbon;
@@ -56,7 +57,7 @@ class ArtistController extends Controller
 
         // return artists data and albums
         return response()->json([
-            'artist' => (new ArtistCollection([$artist]))[0],
+            'artist' => new ArtistResource($artist),
             'albums' => new AlbumCollection($albums)
         ], Response::HTTP_OK);
     }

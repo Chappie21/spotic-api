@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\entities\AlbumController;
 use App\Http\Controllers\entities\ArtistController;
 use App\Http\Controllers\entities\GenresController;
 use Illuminate\Http\Request;
@@ -31,6 +32,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Artist routes
     Route::apiResource('/artist', ArtistController::class);
 
-    // Genres routes
+    // Genre routes
     Route::apiResource('/genre', GenresController::class);
+
+    // Album routes
+    Route::apiResource('/album', AlbumController::class);
 });
