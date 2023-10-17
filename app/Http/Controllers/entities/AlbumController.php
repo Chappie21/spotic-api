@@ -29,14 +29,14 @@ class AlbumController extends Controller
             $query->where('artists_id', $artistId);
         }
 
-        $albums = $query->get();
+        $albums = $query->with('songs')->get(); // Cargar las canciones asociadas a cada álbum
 
         return new AlbumCollection($albums);
     }
 
     public function show(Request $request, $id)
     {
-        $album = Album::find($id);
+        $album = Album::with('songs')->find($id);
 
         if (!$album) {
             return response()->json([
