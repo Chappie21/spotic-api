@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Albums;
 
 use App\Http\Resources\Artists\ArtistResource;
+use App\Http\Resources\Songs\SongResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AlbumResource extends JsonResource
@@ -19,8 +20,9 @@ class AlbumResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->image,
-            'release' => $this->release->format('Y-m-d'), // Formatea la fecha como "YYYY-MM-DD"
-            'artist' => new ArtistResource($this->whenLoaded('artist')), // Relación con el recurso del artista
+            'release' => $this->release,
+            'artist' => new ArtistResource($this->whenLoaded('artist')),
+            'songs' => SongResource::collection($this->whenLoaded('songs')), // Asegúrate de tener SongResource creado
         ];
     }
 }

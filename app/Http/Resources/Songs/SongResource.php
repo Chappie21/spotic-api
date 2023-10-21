@@ -17,7 +17,7 @@ class SongResource extends JsonResource
             'lyrics' => $this->lyrics,
             'duration' => $this->duration,
             'image' => $this->image,
-            'release' => $this->release->format('Y-m-d'),
+            'release' => $this->release,
             'album' => new AlbumResource($this->whenLoaded('album')), // Si está cargada
             'genre' => new GenreResource($this->whenLoaded('genre')), // Si está cargada
             'created_by' => new UserResource($this->whenLoaded('createdByUser')), // Si está cargada

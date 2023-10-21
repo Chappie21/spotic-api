@@ -30,7 +30,7 @@ class SongController extends Controller
         }
 
         if ($duration) {
-            $query->where('duration', '>=', $duration);
+            $query->where('duration', '<=', $duration);
         }
 
         if ($releaseDate) {
@@ -52,15 +52,14 @@ class SongController extends Controller
             });
         }
 
-        $songs = $query->get();
+        $songs = $query->with('genre')->get(); // Cargar la relación de género para cada canción
 
         return new SongCollection($songs);
     }
 
-
     public function show(Request $request, $id)
     {
-        $song = Song::find($id);
+        $song = Song::with('genre')->find($id);
 
         if (!$song) {
             return response()->json([
@@ -72,6 +71,7 @@ class SongController extends Controller
             'song' => new SongResource($song)
         ], Response::HTTP_OK);
     }
+
 
     public function store(Request $request)
     {
