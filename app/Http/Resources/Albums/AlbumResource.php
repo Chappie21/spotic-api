@@ -20,7 +20,7 @@ class AlbumResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->image,
-            'release' => $this->release->format('Y-m-d'),
+            'release' => $this->release,
             'artist' => new ArtistResource($this->whenLoaded('artist')),
             'songs' => SongResource::collection($this->whenLoaded('songs')), // Asegúrate de tener SongResource creado
         ];
